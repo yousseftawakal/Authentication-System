@@ -1,6 +1,8 @@
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { promisify } = require('util');
+
 // ===================================================
 
 const users = JSON.parse(fs.readFileSync('./users.json')); // Get users as an array of objects
@@ -122,6 +124,39 @@ exports.login = async (req, res) => {
       user,
     },
   });
+};
+// =====================================================
+
+// =================== PROTECT ROUTES ==================
+exports.protect = async (req, res, next) => {
+  let token;
+
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    token = req.headers.authorization.split(' ')[1];
+  }
+
+  if (!token) {
+    return res.status(401).json({
+      status: 'fail',
+      message: 'You are not logged in! Please log in to get access',
+    });
+  }
+
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+  const user = users.find((u) => u.id === decoded.id);
+  if (!user) {
+    return res.status(401).json({
+      status: 'fail',
+      message: 'The user belonging to this token does no longer exist',
+    });
+  }
+
+  req.user = user;
+  next();
 };
 // =====================================================
 

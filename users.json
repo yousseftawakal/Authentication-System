@@ -1,14 +1,1 @@
-[
-  {
-    "id": 1,
-    "username": "admin",
-    "email": "admin@email.com",
-    "password": "$2b$12$wvzmB9I7Llerks2NnGsgPOHesEtSy1Wve3L1pjKtbrpAwoqBwqqiC"
-  },
-  {
-    "id": 2,
-    "username": "hello",
-    "email": "hello@email.com",
-    "password": "$2b$12$dGxWwk.vtaZ.enxJxoEVD.o6Y1DuY4W3uOMEiEpUP3ZrM0Mnv5sJ2"
-  }
-]
+[]
