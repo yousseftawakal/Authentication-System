@@ -13,3 +13,15 @@ exports.getAllUsers = (req, res) => {
 		},
 	});
 };
+
+exports.getUser = (req, res) => {
+	// Get user with ID from the request
+	const user = users.find((u) => u.id == req.params.id);
+
+	res.status(200).json({
+		status: "success",
+		data: {
+			user,
+		},
+	});
+};
