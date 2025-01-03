@@ -1,0 +1,14 @@
+{
+	"name": "authentication-system",
+	"version": "1.0.0",
+	"description": "Authentication system without a database server",
+	"main": "app.js",
+	"scripts": {
+		"start": "nodemon server.js"
+	},
+	"author": "Youssef Tawakal",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.21.2"
+	}
+}
